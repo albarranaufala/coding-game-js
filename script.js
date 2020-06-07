@@ -1,7 +1,7 @@
-const LEFT_SYMBOL = '&#8592;'
-const UP_SYMBOL = '&#8593;'
-const RIGHT_SYMBOL = '&#8594;'
-const DOWN_SYMBOL = '&#8595;'
+const LEFT_SYMBOL = '←'
+const UP_SYMBOL = '↑'
+const RIGHT_SYMBOL = '→'
+const DOWN_SYMBOL = '↓'
 const left = document.getElementById('left')
 const up = document.getElementById('up')
 const right = document.getElementById('right')
@@ -27,6 +27,73 @@ backspace.addEventListener('click', function(e){
     currentCode = currentCode.replaceAt(currentCode.length-1, '')
     userInput.innerHTML = currentCode
 })
+ok.addEventListener('click', function(el){
+    run(userInput.innerHTML)
+})
+
+function toRight(){
+    currentPosition = document.querySelector('.player')
+    newPosition = currentPosition.nextElementSibling
+    move(currentPosition, newPosition)
+}
+function toLeft(){
+    currentPosition = document.querySelector('.player')
+    newPosition = currentPosition.previousElementSibling
+    move(currentPosition, newPosition)
+}
+function toDown(){
+    currentPosition = document.querySelector('.player')
+    newPosition = currentPosition.parentElement.nextElementSibling.cells[currentPosition.cellIndex]
+    move(currentPosition, newPosition)
+}
+function toUp(){
+    currentPosition = document.querySelector('.player')
+    newPosition = currentPosition.parentElement.previousElementSibling.cells[currentPosition.cellIndex]
+    move(currentPosition, newPosition)
+}
+function run(code){
+    setTimeout(function(){ 
+        if(code.length===0){
+            let player = document.querySelector('.player')
+            if(player.classList.contains('end')){
+                console.log('berhasil')
+                return
+            }else{
+                console.log('gagal')
+                startPosition = player.parentElement.parentElement.rows[1].cells[1]
+                move(player, startPosition)
+                return
+            }
+        }
+        switch(code.charAt(0)){
+            case LEFT_SYMBOL:
+                toLeft()
+                break
+            case UP_SYMBOL:
+                toUp()
+                break
+            case RIGHT_SYMBOL:
+                toRight()
+                break
+            case DOWN_SYMBOL:
+                toDown()
+                break
+        }
+        code = code.replaceAt(0, '')
+        run(code)
+    }, 500);
+}
+
+function move(currentPosition, newPosition){
+    if(newPosition.classList.contains('path')){
+        currentPosition.classList.remove('player')
+        currentPosition.innerHTML = ''
+        newPosition.classList.add('player')
+        let newDiv = document.createElement('div')
+        newPosition.appendChild(newDiv)
+    }
+}
+
 String.prototype.replaceAt = function(index, replacement) {
 	if (index >= this.length) {
 		return this.valueOf();
