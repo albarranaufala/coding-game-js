@@ -1,7 +1,8 @@
 body{
     margin: 0;
     height: 100%;
-    background-color: #09e653;
+    background-color: #ebed53;
+    font-family: 'Fredoka One', cursive;
 }
 .container{
     margin-top: 1rem;
@@ -11,9 +12,11 @@ body{
 table{
     table-layout:fixed;
     margin-top: 1rem;
-    background-color: #5c3400;
+    background-color: #62b57e;
     border-collapse: collapse;
     text-align: center;
+    border-radius: 16px;
+    box-shadow: 4px 4px #36965e;
 }
 td{
     height: 50px;
@@ -21,10 +24,12 @@ td{
 }
 h1{
     text-align: center;
+    color: white;
+    text-shadow: 4px 4px orange;
 }
 .path{
     background-color: white;
-    border: 1px solid #5c3400;
+    border: 1px solid #62b57e;
 }
 .player div{
     width: 25px;
@@ -34,6 +39,7 @@ h1{
     margin: auto;
 }
 .user-input{
+    border-radius: 16px;
     display: flex;
     align-items: center;
     margin-top: 1rem;
@@ -42,12 +48,16 @@ h1{
     height: 50px;
     padding: 0 16px;
     box-sizing: border-box;
+    box-shadow: 4px 4px orange;
+    overflow: auto;
 }
 .command{
     margin-top: 1rem;
     display: flex;
+    align-items: center;
 }
 .command div{
+    border-radius: 16px;
     height: 50px;
     width: 50px;
     margin-right: 1rem;
@@ -56,6 +66,16 @@ h1{
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    box-shadow: 4px 4px orange;
+    transition: ease-in-out 0.125s;
+}
+.command div:hover{
+    box-shadow: 2px 2px orange;
+}
+.command div:active{
+    -webkit-transform-: translate(-50%, -50%); 
+    height: 48px;
+    width: 48px;
 }
 img{
     width: 50%;

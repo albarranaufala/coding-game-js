@@ -91,6 +91,8 @@ function move(currentPosition, newPosition){
         newPosition.classList.add('player')
         let newDiv = document.createElement('div')
         newPosition.appendChild(newDiv)
+        let audio = new Audio('asset/audio/bup.mp3');
+        audio.play();
     }
 }
 
