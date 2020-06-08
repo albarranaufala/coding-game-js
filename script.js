@@ -9,6 +9,8 @@ const down = document.getElementById('down')
 const backspace = document.getElementById('backspace')
 const ok = document.getElementById('ok')
 const userInput = document.querySelector('.user-input')
+const pauseContainer = document.querySelector('.pause-container')
+const pauseClose = document.querySelector('.pause-close')
 
 left.addEventListener('click', function(e){
     userInput.innerHTML += LEFT_SYMBOL
@@ -29,6 +31,12 @@ backspace.addEventListener('click', function(e){
 })
 ok.addEventListener('click', function(el){
     run(userInput.innerHTML)
+})
+pauseClose.addEventListener('click', function(e){
+    pauseContainer.classList.add('d-none')
+    let player = document.querySelector('.player')
+    startPosition = player.parentElement.parentElement.rows[1].cells[1]
+    move(player, startPosition)
 })
 
 function toRight(){
@@ -56,7 +64,7 @@ function run(code){
         if(code.length===0){
             let player = document.querySelector('.player')
             if(player.classList.contains('end')){
-                console.log('berhasil')
+                pauseContainer.classList.remove('d-none')
                 return
             }else{
                 console.log('gagal')
