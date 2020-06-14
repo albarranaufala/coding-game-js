@@ -11,6 +11,7 @@ const ok = document.getElementById('ok')
 const userInput = document.querySelector('.user-input')
 const pauseContainer = document.querySelector('.pause-container')
 const pauseClose = document.querySelector('.pause-close')
+const audio = new Audio('asset/audio/bup.mp3');
 
 left.addEventListener('click', function(e){
     userInput.innerHTML += LEFT_SYMBOL
@@ -61,6 +62,8 @@ function toUp(){
 }
 function run(code){
     setTimeout(function(){ 
+        audio.pause
+        audio.currentTime = 0
         if(code.length===0){
             let player = document.querySelector('.player')
             if(player.classList.contains('end')){
@@ -87,6 +90,7 @@ function run(code){
                 toDown()
                 break
         }
+        audio.play();
         code = code.replaceAt(0, '')
         run(code)
     }, 500);
@@ -99,8 +103,6 @@ function move(currentPosition, newPosition){
         newPosition.classList.add('player')
         let newDiv = document.createElement('div')
         newPosition.appendChild(newDiv)
-        let audio = new Audio('asset/audio/bup.mp3');
-        audio.play();
     }
 }
 
